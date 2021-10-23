@@ -210,14 +210,18 @@ print('Добро пожаловать в игру "Столицы"!', '\n',
       'Здесь вам предстоит угадывать столицы стран мира. Чтобы начать игру напишите START. Чтобы выйти в любой момент END.')
 log = input()
 
+if(log=="test"):
+    print(1)
 if (log == 'START'):
     points = 0
     streak = 0
     while (True):
         print(f'Ваш счет: {points}', '\n-------------')
-        question = random.choice(list(d))
+        question = random.choice(list(d.values()))
         user_answer = input(f'Введите столицу с большой буквы данного государства "{question}": ')
-        if not (user_answer in d):
+        if not (user_answer in d.keys()):
+            if(user_answer=='END'):
+                break
             print('Данной столицы не существует в списке')
             continue
         if (isCorrectAnswer(user_answer,question,d)):
@@ -229,7 +233,8 @@ if (log == 'START'):
                 points *= streak
         else:
             print('Вы ответили неверно.')
+            streak = 0
             points -= 1
-else:
-    print('С вами было приятно играть. Удачи')
-    exit(0)
+
+print('С вами было приятно играть. Удачи')
+exit(0)

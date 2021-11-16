@@ -12,21 +12,23 @@ def create_file(filename):
     except IOError:
         print('File with current name did not find. Try another name')
         quit()
-    return nums.replace('\n',' ')
-
-def find_words(data):
-    data=data.split(' ')zz
-    for i in range(len(data)):
-        for symbol in data[i]:
-            if not(str(symbol).isalpha()):
-                data[i] = data[i].replace(symbol,'')
+    data=nums.split(' ')
+    sorted(data)
+    data.reverse()
     return data
 
+def find_large_words(data):
+    ans=[]
+    for i in range(1,len(data)):
+        if(len(data[i])==len(data[i-1])):
+            ans.append(data[i-1])
+        else:
+            ans.append(data[i-1])
+            break
+    for i in ans: print(i)
 
 
 parser = create_parse()
 namespace = parser.parse_args()
 workspace = create_file(namespace.filename)
-newfile=find_words(workspace)
-#print(workspace.split(' '))
-print(newfile)
+find_large_words(workspace)

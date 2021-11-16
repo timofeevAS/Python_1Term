@@ -8,25 +8,17 @@ def create_parse():
 def create_file(filename):
     try:
         with open(filename, 'r') as f:
-            nums = f.read()
+            nums = f.read().splitlines()
     except IOError:
         print('File with current name did not find. Try another name')
         quit()
-    return nums.replace('\n',' ')
+    return nums
 
-def find_words(data):
-    data=data.split(' ')zz
-    for i in range(len(data)):
-        for symbol in data[i]:
-            if not(str(symbol).isalpha()):
-                data[i] = data[i].replace(symbol,'')
-    return data
-
-
+def output_lines(file,count):
+    for i in range(count):
+        print(file[i])
 
 parser = create_parse()
 namespace = parser.parse_args()
 workspace = create_file(namespace.filename)
-newfile=find_words(workspace)
-#print(workspace.split(' '))
-print(newfile)
+output_lines(workspace,10)
